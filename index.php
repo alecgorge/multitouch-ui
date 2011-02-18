@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+$db = new PDO('sqlite:db/alums.sqlite');
+
+function middle_initial ($x) {
+	return $x == "NULL" ? "" : substr($x,0,1).".";
+}
+?><!DOCTYPE html>
 <html>
 	<head>
 		<style type="text/css">
@@ -82,14 +88,14 @@
 			#sidebar .gutter {
 				padding:0;
 			}
-			#sidebar h2 {
+			#sidebar h2, #lsidebar h2 {
 				padding:20px;
 				/*background: rgba(94,28,28,0.75);
 				position:fixed;
 				width:100%;*/
 			}
 			#lsidebar .gutter {
-				padding:20px;
+				padding:0px;
 			}
 			h2 {
 				margin:0;
@@ -118,6 +124,35 @@
 				padding:10px 15px;
 			}
 			ul.list li a:hover, ul.list li a:active, ul.list li a:focus {
+				/* background-image:-moz-linear-gradient(#6D2020,#511919);	*/
+				background-image:-moz-linear-gradient(#FCD04B,#FBBC0F);	
+				color:black;
+				border-color:#000;
+			}
+			ul.list li a:hover span, ul.list li a:active span, ul.list li a:focus span {
+				color:black;
+			}
+			ul.large-list {
+				list-style:none;
+				margin:0;
+				padding:0;
+			}
+			ul.large-list li {
+				margin:0;
+			}
+			ul.large-list li a {
+				display:block;
+				color:white;
+				background-image:-moz-linear-gradient(#521818,#481616);			
+				border-bottom:1px #451414 solid;
+				text-decoration:none;
+				padding:10px 15px;
+			}
+			ul.large-list li a span{
+				float:right;
+				opacity:0.5;
+			}
+			ul.large-list li a:hover, ul.large-list li a:active, ul.large-list li a:focus {
 				/* background-image:-moz-linear-gradient(#6D2020,#511919);	*/
 				background-image:-moz-linear-gradient(#FCD04B,#FBBC0F);	
 				color:black;
@@ -177,7 +212,18 @@
 				<div id="lsidebar">
 					<div class="gutter">
 						<h2>Random Alums</h2>
-						<p>yarbl</p>
+						<ul class="large-list">
+						<?php
+						$smt = $db->prepare("SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10");
+						$smt->execute();
+						foreach($smt->fetchAll(PDO::FETCH_ASSOC) as $row) {
+							printf(<<<EOT
+	<li><a href="#">%s %s %s <span>%s</span></a></li>		
+EOT
+,$row['firstname'], middle_initial($row['middlename']), $row['lastname'], $row['class']);
+						}
+						?>
+						</ul>
 					</div>
 				</div>
 				<div id="content">
