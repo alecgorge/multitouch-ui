@@ -1,0 +1,11 @@
+for color-scheme.png, from top left, clockwise
+
+#762536
+#CCCCCC
+#813A4A
+#601E2C
+#5E1C1D
+#FBBC0F
+#57191A
+#6F2826
+#411B18
