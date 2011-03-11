@@ -1,0 +1,6 @@
++ Search -> Sortable
++ Browse by Year -> Sortable
++ Individual page -> Sortable
+
++ Sortable person list
++ Faux link from rel if class is touch-link

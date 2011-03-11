@@ -19,7 +19,7 @@ function middle_initial ($x) {
 				/*border-radius:15px;*/
 			}
 			.gradient {
-				background-image:-moz-linear-gradient(#732121, #5E1C1D);			
+				background-image:-webkit-linear-gradient(#732121, #5E1C1D);			
 				border-bottom:1px #451414 solid;
 			}
 			#header {
@@ -67,6 +67,12 @@ function middle_initial ($x) {
 				text-align:center;
 				font-size:18px;
 				color:#222;
+			}
+			#sidebar, #lsidebar {
+				position:relative;
+				z-index:1;
+				width:auto;
+				overflow:scroll;			
 			}
 			#sidebar {
 				float:right;
@@ -118,14 +124,14 @@ function middle_initial ($x) {
 			ul.list li a {
 				display:block;
 				color:white;
-				background-image:-moz-linear-gradient(#521818,#481616);			
+				background-image:-webkit-linear-gradient(#521818,#481616);			
 				border-bottom:1px #451414 solid;
 				text-decoration:none;
 				padding:10px 15px;
 			}
 			ul.list li a:hover, ul.list li a:active, ul.list li a:focus {
-				/* background-image:-moz-linear-gradient(#6D2020,#511919);	*/
-				background-image:-moz-linear-gradient(#FCD04B,#FBBC0F);	
+				/* background-image:-webkit-linear-gradient(#6D2020,#511919);	*/
+				background-image:-webkit-linear-gradient(#FCD04B,#FBBC0F);	
 				color:black;
 				border-color:#000;
 			}
@@ -143,7 +149,7 @@ function middle_initial ($x) {
 			ul.large-list li a {
 				display:block;
 				color:white;
-				background-image:-moz-linear-gradient(#521818,#481616);			
+				background-image:-webkit-linear-gradient(#521818,#481616);			
 				border-bottom:1px #451414 solid;
 				text-decoration:none;
 				padding:10px 15px;
@@ -153,8 +159,8 @@ function middle_initial ($x) {
 				opacity:0.5;
 			}
 			ul.large-list li a:hover, ul.large-list li a:active, ul.large-list li a:focus {
-				/* background-image:-moz-linear-gradient(#6D2020,#511919);	*/
-				background-image:-moz-linear-gradient(#FCD04B,#FBBC0F);	
+				/* background-image:-webkit-linear-gradient(#6D2020,#511919);	*/
+				background-image:-webkit-linear-gradient(#FCD04B,#FBBC0F);	
 				color:black;
 				border-color:#000;
 			}
@@ -168,6 +174,7 @@ function middle_initial ($x) {
 			}
 		</style>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript">
 			$(function () {
 				$.fn.fullHeight = function () {
@@ -177,7 +184,6 @@ function middle_initial ($x) {
 				};
 				$.fn.stretch = function () {
 					return this.each(function () {
-						console.log($(this).offset());
 						$(this).css('height', (typeof window.innerHeight != 'undefined' ? window.innerHeight : document.body.offsetHeight)-$(this).offset().top+'px');
 					});
 				};
@@ -186,6 +192,32 @@ function middle_initial ($x) {
 				$('#search').click(function () {
 					this.select() 
 				});
+				
+				// var prevent = function(e) {$(this).unbind('click', prevent); return false; };
+				// var storage = {};
+				// $('#sidebar a, #lsidebar a').mousedown(function (e) {
+					// for(var n in e) {
+						// var m = n.match(/jQuery([0-9]+)/);
+						// if(m != null && m != undefined && m.length == 2) {
+							// storage[m[0]] = [e.pageX, e.pageY];
+						// }
+					// }
+				// }).mouseup(function (e) {
+					// for(var n in e) {
+						// var m = n.match(/jQuery([0-9]+)/);
+						// if(m != null && m != undefined && m.length == 2) {
+							// var coords = storage[m[0]];
+							// console.log(Math.abs(e.pageX - coords[0]));
+							// console.log(Math.abs(e.pageY - coords[1]));
+							// if(Math.abs(e.pageX - coords[0]) > 5 || Math.abs(e.pageY - coords[1]) > 5) {
+								// $(this).bind('click', prevent);
+								// return false;
+							// }
+						// }
+					// }
+				// });				
+				var gradyears = new iScroll('sidebar');
+				var ralums = new iScroll('lsidebar');				
 			});
 		</script>
 	</head>
@@ -204,15 +236,15 @@ function middle_initial ($x) {
 				<div id="sidebar">
 					<div class="gutter">
 						<h2>Graduation Years</h2>
-						<ul id="grad-years" class="list">
-							<?php foreach(range(1966, 2013) as $v) { ?><li><a href="/year/<?php echo $v; ?>"><?php echo $v; ?></a></li><?php } ?>
+						<ul id="grad-years" class="list large-list" id="grad-years">
+							<?php foreach(range(1966, 2013) as $v) { ?><li><a href="#" rel="/year/<?php echo $v; ?>"><?php echo $v; ?></a></li><?php } ?>
 						</ul>
 					</div>
 				</div>
 				<div id="lsidebar">
 					<div class="gutter">
 						<h2>Random Alums</h2>
-						<ul class="large-list">
+						<ul class="large-list list" id="random-alums">
 						<?php
 						$smt = $db->prepare("SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10");
 						$smt->execute();
