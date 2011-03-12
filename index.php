@@ -208,6 +208,105 @@ function middle_initial ($x) {
 		<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
 		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript">
+			var trigger_s = {};
+			function bind (k,v) {
+				if(typeof(trigger_s[k]) == undefined) {
+					trigger_s[k] = [];
+				}
+				trigger_s[k].push(v);
+			}
+			
+			function trigger (k,args, that) {
+				if(typeof(trigger_s[k]) != undefined) {
+					_.map(trigger_s[k], function () {
+						this.apply(that, args);
+					});
+				}
+			}
+				
+			function displayFromDatasource(ds) {
+				
+			}
+			
+			// returns a "Datasource"
+			function filter(query) {
+				if(typeof(query) == "string") {
+					var q = parseQuery(query);
+				}
+				else {
+					var q = query;
+				}
+				
+				$.db.query("SELECT * FROM alumni WHERE fullname LIKE '%?%'", [q.name], function (tx, results) {
+					console.log(tx);
+					console.log(results);
+				});
+				$.db.query("SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'", [q.name, q.name, q.name], function (tx, results) {
+					console.log(tx);
+					console.log(results);
+				});
+			}
+			
+			function parseQuery(str) {
+				var parts = ($.trim(str)).replace("'", "").replace(/\s+/g, " ").replace(/\s*class of\s*/g, " ").split(" ");
+				var year = false;
+				var gender = false;
+				var names = [];
+				
+				var numstrings = 0;
+				_.map(parts, function (v) {
+					var subparts = v.split(":");
+					switch(subparts[0].toLowerCase()) {
+						case "year":
+							var i = parseInt(subparts[1]);
+							
+							if(i > 65 && i < 100) {
+								i += 1900;
+							}
+							else if(i >= 0 && i < parseInt((new Date()).getFullYear().toString().substr(2))+1) {
+								i += 2000;
+							}
+							year = i;
+							break;
+						case "firstname":
+							names[0] = subparts[1];
+							break;
+						case "lastname":
+							names[2] = subparts[1];
+							break;
+						case "gender":
+							gender = subparts[1];
+							break;
+						default:
+							var i = parseInt(subparts[0]);
+							if(i > 0) {
+								if(i > 65 && i < 100) {
+									i += 1900;
+								}
+								else if(i >= 0 && i < parseInt((new Date()).getFullYear().toString().substr(2))+1) {
+									i += 2000;
+								}
+								year = i;
+							}
+							else {
+								names.push(subparts[0]);
+							}
+							break;
+					}
+				});
+				
+				if(names.length == 2 && typeof(names[1]) == "string") {
+					names[2] = names[1];
+					names[1] = "";
+				}
+				
+				return {
+					"year": year,
+					"gender": gender,
+					"names": names
+				};
+			}
+
 			$(function () {
 				$.fn.fullHeight = function () {
 					return this.each(function () {
@@ -225,31 +324,22 @@ function middle_initial ($x) {
 					this.select() 
 				});
 				
-				var trigger_s = {};
-				function bind (k,v) {
-					if(typeof(trigger_s[k]) == undefined) {
-						trigger_s[k] = [];
-					}
-					trigger_s[k].push(v);
-				}
-				
-				function trigger (k,args, that) {
-					if(typeof(trigger_s[k]) != undefined) {
-						_.map(trigger_s[k], function () {
-							this.apply(that, args);
-						});
-					}
-				}
-				
 				$.db = {
 					_db : false,
 					init : function () {
 						this._db = openDatabase('alumni', '2.0', 'Multitouch Alums', 25 * 1024 * 1024);
 						var that = this;
 						$.get('db/dump.sql', function (data) {
-							this.query(data, function () {
-								trigger('db_ready');
+							var x = data.split("\n");
+							// var called = false;
+							that._db.transaction(function (tx) {
+								// called = true;
+								_.map(x, function (v,k) {
+									// console.log(v);
+									tx.executeSql(v);
+								});
 							});
+							// called && alert('holy monkeybrains batman! it works!');
 						}); 
 					},
 					query : function (sql, args, cb, cbe) {
@@ -262,6 +352,7 @@ function middle_initial ($x) {
 						});
 					},
 				};
+				$.db.init();
 				
 				// a datasource is an array of persons
 				// a person is:
@@ -270,54 +361,6 @@ function middle_initial ($x) {
 						name:
 					}
 				*/
-				function displayFromDatasource(ds) {
-					
-				}
-				
-				// returns a "Datasource"
-				function filter(query) {
-					if(typeof(query) == "string") {
-						var q = parseQuery(query);
-					}
-					else {
-						var q = query;
-					}
-					
-					
-					$.db.query("SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'", q.name, q.name, q.name);
-				}
-				
-				function parseQuery(str) {
-					var parts = str.split(" ");
-					var year = false;
-					var first = false;
-					var last = false;
-					var gender = false;
-					_.map(parts, function () {
-						var subparts = str.split(":");
-						switch(subparts[0].toLowerCase()) {
-							case "year":
-								var i = parseInt(subparts[1]);
-								if(i > 65 && i < 100) {
-									i += 1900;
-								}
-								if(i >= 0 && i < parseInt((new Date()).getFullYear().toString().substr(2))+1) {
-									i += 2000;
-								}
-								year = i;
-								break;
-							case "FirstName":
-								first = subparts[1];
-								break;
-							case "FirstName":
-								last = subparts[1];
-								break;
-							case "Gender":
-								gender = subparts[1];
-								break;
-						}
-					});
-				}
 				
 				// var prevent = function(e) {$(this).unbind('click', prevent); return false; };
 				// var storage = {};

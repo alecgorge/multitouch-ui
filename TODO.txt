@@ -4,3 +4,5 @@
 
 + Sortable person list
 + Faux link from rel if class is touch-link
+
++ DON"T FORGET TO FIX DUMPER TO STRIP UNECESSARY TRANSACTION
