@@ -47,7 +47,7 @@ function middle_initial ($x) {
 				text-align:center;
 			}
 			#search {
-				padding:7px;
+				padding:6px;
 				border:1px #451414 solid;
 				border-radius: 4px 0 0 4px;
 				border-right:0;
@@ -172,8 +172,40 @@ function middle_initial ($x) {
 			#content .gutter {
 				padding:20px;
 			}
+			#sort-box {
+				float:left;
+				width:45%;
+			}
+			#filter-box {
+				float:right;
+				text-align:right;
+				width:45%;
+			}
+			#filter-sort-bar {
+				background-image:-webkit-linear-gradient(#521818,#481616);			
+			}
+			#filter-sort-bar .bar-button {
+				color:rgba(255,255,255,0.7);
+				text-decoration:none;
+				padding:15px;
+				display:block;
+				text-align:center;
+				border-bottom:1px #451414 solid;
+			}
+			#filter-sort-bar a.bar-button:hover, #filter-sort-bar a.bar-button:active, #filter-sort-bar a.active.bar-button  {
+				color:rgba(255,255,255,0.7);
+				background-image:-webkit-linear-gradient(#FCD04B,#FBBC0F);	
+				color:#521818;
+			}
+			#filter-box .bar-button {
+				float:right;
+			}
+			#sort-box .bar-button {
+				float:left;
+			}
 		</style>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script type="text/javascript" src="http://documentcloud.github.com/underscore/underscore-min.js"></script>
 		<script type="text/javascript" src="js/iscroll.js"></script>
 		<script type="text/javascript">
 			$(function () {
@@ -192,6 +224,100 @@ function middle_initial ($x) {
 				$('#search').click(function () {
 					this.select() 
 				});
+				
+				var trigger_s = {};
+				function bind (k,v) {
+					if(typeof(trigger_s[k]) == undefined) {
+						trigger_s[k] = [];
+					}
+					trigger_s[k].push(v);
+				}
+				
+				function trigger (k,args, that) {
+					if(typeof(trigger_s[k]) != undefined) {
+						_.map(trigger_s[k], function () {
+							this.apply(that, args);
+						});
+					}
+				}
+				
+				$.db = {
+					_db : false,
+					init : function () {
+						this._db = openDatabase('alumni', '2.0', 'Multitouch Alums', 25 * 1024 * 1024);
+						var that = this;
+						$.get('db/dump.sql', function (data) {
+							this.query(data, function () {
+								trigger('db_ready');
+							});
+						}); 
+					},
+					query : function (sql, args, cb, cbe) {
+						if(typeof(args) != "object") {
+							cb = args;
+							args = [];
+						}
+						this._db.transaction(function (tx) {
+							tx.executeSql(sql, args, cb, cbe);
+						});
+					},
+				};
+				
+				// a datasource is an array of persons
+				// a person is:
+				/*
+					{
+						name:
+					}
+				*/
+				function displayFromDatasource(ds) {
+					
+				}
+				
+				// returns a "Datasource"
+				function filter(query) {
+					if(typeof(query) == "string") {
+						var q = parseQuery(query);
+					}
+					else {
+						var q = query;
+					}
+					
+					
+					$.db.query("SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'", q.name, q.name, q.name);
+				}
+				
+				function parseQuery(str) {
+					var parts = str.split(" ");
+					var year = false;
+					var first = false;
+					var last = false;
+					var gender = false;
+					_.map(parts, function () {
+						var subparts = str.split(":");
+						switch(subparts[0].toLowerCase()) {
+							case "year":
+								var i = parseInt(subparts[1]);
+								if(i > 65 && i < 100) {
+									i += 1900;
+								}
+								if(i >= 0 && i < parseInt((new Date()).getFullYear().toString().substr(2))+1) {
+									i += 2000;
+								}
+								year = i;
+								break;
+							case "FirstName":
+								first = subparts[1];
+								break;
+							case "FirstName":
+								last = subparts[1];
+								break;
+							case "Gender":
+								gender = subparts[1];
+								break;
+						}
+					});
+				}
 				
 				// var prevent = function(e) {$(this).unbind('click', prevent); return false; };
 				// var storage = {};
@@ -218,6 +344,7 @@ function middle_initial ($x) {
 				// });				
 				var gradyears = new iScroll('sidebar');
 				var ralums = new iScroll('lsidebar');				
+				//$.db.init();
 			});
 		</script>
 	</head>
@@ -259,6 +386,18 @@ EOT
 					</div>
 				</div>
 				<div id="content">
+					<div id="filter-sort-bar">
+						<div id="sort-box">
+							<span class="bar-button">Sort by:</span>
+							<a href="#" class="bar-button active">First Name</a>
+							<a href="#" class="bar-button">Last Name</a>
+							<a href="#" class="bar-button">Graduation Year</a>
+						</div>
+						<div id="filter-box">
+							<a href="#" id="filter-button" class="bar-button">Filter Results</a>
+						</div>
+						<br class="clear"/>
+					</div>
 					<div class="gutter">
 						<h2>Welcome</h2>
 						<p>Some really sweet text might be here someday...</p>
