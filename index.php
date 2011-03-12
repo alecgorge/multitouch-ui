@@ -336,6 +336,7 @@ function middle_initial ($x) {
 								// called = true;
 								_.map(x, function (v,k) {
 									// console.log(v);
+									// HANDLE ERRORS BRO
 									tx.executeSql(v);
 								});
 							});
