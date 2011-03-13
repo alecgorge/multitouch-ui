@@ -1,4 +1,4 @@
-document how we are going to um parse the search queries and filtering q ion general. operators?
+document how we are going to um parse the search queries and filtering q in general. operators?
 
 
 Ever search is a filter.
@@ -6,7 +6,7 @@ Different types of inputs: Text box, selection.
 Seleciton of year, for example.
 
 Results page
-Shows the images with captions and displays them in grid or horizontal line. (drop down to switch displays in corner?) for now just write horizontaly scrolling grid. Slider to control size of image results?
+Shows the images with captions and displays them in (scroll h/v) grid or horizontal line. (drop down to switch displays in corner?) for now just write horizontaly scrolling grid. Slider to control size of image results?
 
 
 People page, think as expanded results. Can sorta see faded previous results on left and right, 'scroll' to them.
@@ -22,8 +22,8 @@ Gender:M
 
 Etc. The user does not, [but can?] type this in. The search box is not typed but rather keyword/tag searching. 'male, m, guy, etc' all look for gender collumn male. numbers look for collumn year, anything else searches for name.
 
-The Filter Bar is a series of drop-down (style, interaciton may be pop-up, or something else, but drop down mentality) for further redefining query.
+The Filter Bar is a series of drop-down (interaction is pop-up overlay) for further redefining query.
 The Sort bar lets you pick how to sort. By Gender, first name, last name, grad year, A-Z, Z-A. defaults/backups to last name a-z. 
 The bars will probably be in the same bar. one on left, one on right. "filter and sort". 
 
-You tap on 'gender' and a popup could appear with 2 large buttons "Male. Female." and explanation text: "Only display" 
+You tap on 'gender' and a popup could appear with large buttons "[All], Male. Female." and explanation text: "Only display following" 
