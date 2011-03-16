@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style type="text/css">
+			#test {
+				width:250px;
+				height:250px;
+				background:black;
+			}
+		</style>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				/*$('body').mousemove(function (e) {
+					$('#test').trigger('mousemove', e);
+				});
+				$('#test').mousemove(function (e) {
+					console.log(e);
+				});*/
+				var prevent = function(e) {e.preventDefault(); $(this).unbind('click', prevent); return false; };
+				var storage = {};
+				$('a').mousedown(function (e) {
+					for(var n in e) {
+						var m = n.match(/jQuery([0-9]+)/);
+						if(m != null && m != undefined && m.length == 2) {
+							storage[m[0]] = [e.pageX, e.pageY];
+						}
+					}
+				}).mouseup(function (e) {
+					for(var n in e) {
+						var m = n.match(/jQuery([0-9]+)/);
+						if(m != null && m != undefined && m.length == 2) {
+							var coords = storage[m[0]];
+							console.log(Math.abs(e.pageX - coords[0]));
+							console.log(Math.abs(e.pageY - coords[1]));
+							if(Math.abs(e.pageX - coords[0]) > 5 || Math.abs(e.pageY - coords[1]) > 5) {
+								$(this).bind('click', prevent);
+								return false;
+							}
+						}
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<a href="#">test</a>
+		<div id="test">
+			
+		</div>
+	</body>
+</html>

@@ -1,0 +1,675 @@
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+SELECT * FROM alumni WHERE alum_id = ?
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[679]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[2680]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[1403]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[false]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE '%?%' OR fullname LIKE '%?%' OR fullname LIKE '%?%'
+["dsfa"]
+
+SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'
+[null,null,null]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE '%?%' OR fullname LIKE '%?%' OR fullname LIKE '%?%'
+["sdaf"]
+
+SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'
+[null,null,null]
+
+SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'
+[null,null,null]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE '%?%' OR fullname LIKE '%?%' OR fullname LIKE '%?%'
+["asdfd"]
+
+SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'
+["asdfd"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE '%?%' OR fullname LIKE '%?%' OR fullname LIKE '%?%'
+["sadfasd"]
+
+SELECT * FROM alumni WHERE firstname LIKE '%?%' OR lastname LIKE '%?%' OR middlename LIKE '%?%'
+["sadfasd"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE '%?%'
+["mccool"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1981]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1983]
+
+SELECT * FROM alumni WHERE class = ?
+[1996]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1994]
+
+SELECT * FROM alumni WHERE class = ?
+[1982]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[1574]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccol%"]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[5784]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[6452]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[1657]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[2249]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[3840]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[5506]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[4373]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[2156]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[6985]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1970]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1967]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1969]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1968]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni WHERE class = ?
+[1972]
+
+SELECT * FROM alumni WHERE alum_id = ?
+[5447]
+
+SELECT * FROM alumni WHERE fullname LIKE ?
+["%mccool%"]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+
+SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10
+[]
+

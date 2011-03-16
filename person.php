@@ -9,14 +9,5 @@
   	</p>
   </div>
 </div>
-<?php
-//Why is this a PHP file? I dont know. 
-?>
-<div id="individualresult">
-  <div id="photop">
- 	 <img src="morebatman.jpg" />
-  </div>
-  <div id="caption">
-  <p>Matt Giles '86</p>
-  </div>
-</div>
+
+<li class="result result-person"><div class="thumb-person"><img src="%s" /></div><p>%s</p></li>
