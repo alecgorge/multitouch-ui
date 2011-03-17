@@ -170,6 +170,10 @@ ul.large-list li a:hover, ul.large-list li a:active, ul.large-list li a:focus {
 	overflow:auto;
 }
 #content .gutter {
+	padding:25px;
+}
+
+#content > .gutter {
 	padding:0;
 }
 #sort-box {
@@ -202,4 +206,16 @@ ul.large-list li a:hover, ul.large-list li a:active, ul.large-list li a:focus {
 }
 #sort-box .bar-button {
 	float:left;
+}
+
+.details-person .image-person {
+	float:left;
+}
+.details-person .data {
+	float:left;
+	margin:0 0 0 25px;
+}
+
+.details-person h3 {
+	margin:0 0 15px 0;
 }

@@ -19,7 +19,7 @@ try {
 	$db = new PDO('sqlite:db/alums.sqlite');
 	$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-	file_put_contents("SQL.log", $query."\r\n".$_GET['args']."\r\n\r\n", FILE_APPEND);
+	// file_put_contents("SQL.log", $query."\r\n".$_GET['args']."\r\n\r\n", FILE_APPEND);
 	$smt = $db->prepare($query);
 	
 	$smt->execute((array)$args);

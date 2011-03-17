@@ -27,6 +27,7 @@ function rebuildScrollers (v) {
 			scroll_obj[v].destroy();
 		}
 		scroll_obj[v] = new iScroll(v);
+		return;
 	}
 	_.each(scrollers, function (v) {
 		if(typeof scroll_obj[v] == "object") {
@@ -35,12 +36,32 @@ function rebuildScrollers (v) {
 		scroll_obj[v] = new iScroll(v);
 	});
 }
+function setHistory(name, search) {
+	if(typeof(search) != "string") {
+		$('#history-bar > .gutter').html('');
+		return;
+	}
+	$("#history-bar > .gutter").html($.templates.render("historyLink", [
+		search,
+		name.toString()
+	]));
+}
+	
+
 	
 function displayFromDatasource(ds) {
 	var lis = "";
-	console.log("ds",ds);
+	// console.log("ds",ds);
+	if(ds.length == 1) {
+		var v = ds[0];
+		var fullname = v.firstname + ' ' + (v.nickname != "NULL" && v.nickname != v.firstname ? '"' + v.nickname + '"' : "") + " " + middle_initial(v.middlename) + " " + v.lastname;
+		$('#ajax-content').html($.templates.render("details", [v.alum_id, v.alum_id, "bigbatman.jpg", fullname, v["class"].toString().substr(2)]));
+		rebuildScrollers('inner-content');
+		return;
+	}
 	_.each(ds, function (v,k) {
-		lis += $.templates.render("person", [v.alum_id, "batman.jpg", v.fullname]);
+		var fullname = v.firstname + ' ' + (v.nickname != "NULL" && v.nickname != v.firstname ? '"' + v.nickname + '"' : "") + " " + middle_initial(v.middlename) + " " + v.lastname;
+		lis += $.templates.render("person", [v.alum_id, "batman.jpg", fullname,v["class"].toString().substr(2)]);
 	});
 	$('#ajax-content').html($.templates.render("resultGroup", [lis]));
 	rebuildScrollers('inner-content');
@@ -49,6 +70,21 @@ function displayFromDatasource(ds) {
 function middle_initial (x) {
 	return x == "NULL" ? "" : x.substr(0,1)+".";
 }
+var generateRandomAlums = function () {
+	// random ppl
+	var $ra = $('#random-alums');
+	$ra.fadeOut(function () {
+		$.db.query("SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10", function (rows) {
+			$ra.html('');				
+			_.each(rows, function (v, k) {
+				$ra.append($.templates.render("randomAlumLine", [v.alum_id, v.firstname, middle_initial(v.middlename), v.lastname, v["class"]]));
+			});
+			$ra.fadeIn(function () {
+				rebuildScrollers("lsidebar");
+			});
+		}, $.db.error);
+	});
+};
 
 // returns a "Datasource"
 function filter(query) {
@@ -60,7 +96,7 @@ function filter(query) {
 		q = query;
 	}
 	
-	console.log(q);
+	// console.log(q);
 	if(q.id > 0) {
 		$.db.query("SELECT * FROM alumni WHERE alum_id = ?", [q.id], function (rows) {
 			displayFromDatasource(rows);
@@ -69,6 +105,7 @@ function filter(query) {
 	else if (q.year > 1966 && q.names.length == 0) {
 		$.db.query("SELECT * FROM alumni WHERE class = ?", [q.year], function (rows) {
 			displayFromDatasource(rows);
+			setHistory(q.year, "year:"+q.year);
 		});
 	}
 	else if(q.names.length > 2) {
@@ -84,6 +121,25 @@ function filter(query) {
 		});
 	}
 }
+
+var genGradYears = function () {
+	var $gy = $('#grad-years');
+	$gy.fadeOut(function () {
+		$gy.html('');
+		_.range(1966,((new Date()).getFullYear()) + 1).forEach(function (v,k) {
+			$gy.append($.templates.render("gradYearLine", [v,v]));
+		});
+		$gy.fadeIn(function () {
+			rebuildScrollers("sidebar");
+		});
+	});
+}
+
+var doSearch = function (v) {
+	filter(parseQuery(typeof(v) == "string" ? v : $("#search").val()));
+};
+
+
 
 function parseQuery(str) {
 	var parts = ($.trim(str)).replace("'", "").replace(/\s+/g, " ").replace(/\s*class of\s*/g, " ").split(" ");
@@ -174,7 +230,9 @@ $(function () {
 		"randomAlumLine" : '<li><a href="#" rel="id:%s" class="search-link">%s %s %s <span>%s</span></a></li>',
 		"gradYearLine": '<li><a href="#" rel="year:%s" class="search-link">%s</a></li>',
 		"resultGroup" : '<ul class="result-group list large-list">%s</ul>',
-		"person" : '<li class="result result-person"><a href="#" rel="id:%s"><b class="thumb-person"><img src="%s" /></b><b class="name">%s</b><br class="clear"/></a></li>',
+		"person" : '<li class="result result-person"><a href="#" rel="id:%s"><b class="thumb-person"><img src="%s" /></b><b class="name">%s &#39;%s</b><br class="clear"/></a></li>',
+		"details" : '<div class="details-person person-%s" rel="id:%s"><div class="gutter"><div class="image-person"><img src="%s" width="256" /></div><div class="data"><h3>%s &#39;%s</h3><p>Extra Information Goes Here, man</p></div></div><br class="clear"/></div>',
+		"historyLink" : '<a href="#" rel="%s" class="history-link search-link">%s</a>',
 		render : function (k,vs) {
 			vs.unshift($.templates[k]);
 			return sprintf.apply(window, vs);
@@ -206,29 +264,36 @@ $(function () {
 		}
 	};
 	
-	var generateRandomAlums = function () {
-		// random ppl
-		var $ra = $('#random-alums');
-		$ra.fadeOut(function () {
-			$.db.query("SELECT * FROM alumni ORDER BY RANDOM() LIMIT 10", function (rows) {
-				$ra.html('');				
-				_.each(rows, function (v, k) {
-					$ra.append($.templates.render("randomAlumLine", [v.alum_id, v.firstname, middle_initial(v.middlename), v.lastname, v["class"]]));
-				});
-				$ra.fadeIn(function () {
-					rebuildScrollers("lsidebar");
-				});
-			}, $.db.error);
-		});
+	$.drillDownHistory = {
+		stack : [],
+		add : function (name, e) {
+			var last = this.stack[this.stack.length - 1];
+			this.stack.push([name, e]);
+			
+			return $.templates.render("historyLink", [
+				last[0],
+				name
+			]);
+		},
+		set : function (name, e) {
+			this.stack = [[name,e]];
+		},
+		goTo : function (name) {
+			this.stack.forEach(function (v,k) {
+				if(v[0] == name) {
+					displayFromDatasource(v[1]);
+					this.stack = this.stack.slice(0,k);
+					return;
+				}
+			});
+		}
 	};
+	
 	setInterval(function () {
 		generateRandomAlums();
-	}, 15 * 1000 /* 60 seconds */);
+	}, 15 * 1000 /* 15 seconds */);
 	generateRandomAlums();
 	
-	var doSearch = function (v) {
-		filter(parseQuery(typeof(v) == "string" ? v : $("#search").val()));
-	};
 	$("#go").click(doSearch);
 	$("#search").focus(function () {
 		$(this).select();
@@ -238,22 +303,37 @@ $(function () {
 		}
 	});
 	$(".search-link").live("click", function () {
-		doSearch($(this).attr('rel'));
+		return false;
 	});
 	
-	var genGradYears = function () {
-		var $gy = $('#grad-years');
-		$gy.fadeOut(function () {
-			$gy.html('');
-			_.range(1966,((new Date()).getFullYear()) + 1).forEach(function (v,k) {
-				$gy.append($.templates.render("gradYearLine", [v,v]));
-			});
-			$gy.fadeIn(function () {
-				rebuildScrollers("sidebar");
-			});
-		});
-	}
 	genGradYears();
+
+	var storage = {};
+	$('.list a').live('mousedown', function (e) {
+		for (var n in e) {
+			var m = n.match(/jQuery([0-9]+)/);
+			if (m != null && m != undefined && m.length == 2) {
+				storage[m[0]] = [e.pageX, e.pageY];
+			}
+		}
+	}).live('mouseup', function (e) {
+		for (var n in e) {
+			var m = n.match(/jQuery([0-9]+)/);
+			if (m != null && m != undefined && m.length == 2) {
+				var coords = storage[m[0]];
+				// console.log(Math.abs(e.pageX - coords[0]));
+				// console.log(Math.abs(e.pageY - coords[1]));
+				if (Math.abs(e.pageX - coords[0]) > 5 || Math.abs(e.pageY - coords[1]) > 5) {
+					// $(this).bind('click', prevent);
+					return false;
+				}
+				else {
+					doSearch($(this).attr('rel'));
+				}
+			}
+		}
+	});
 	
+
 	rebuildScrollers("inner-content");
 });
