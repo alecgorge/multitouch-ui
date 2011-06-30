@@ -22,19 +22,19 @@ function trigger (k,args, that) {
 
 // rebinds iScroll. should be called after ajax
 function rebuildScrollers (v) {
-	if(typeof v == "string") {
-		if(typeof scroll_obj[v] == "object") {
-			scroll_obj[v].destroy();
-		}
-		scroll_obj[v] = new iScroll(v);
-		return;
-	}
-	_.each(scrollers, function (v) {
-		if(typeof scroll_obj[v] == "object") {
-			scroll_obj[v].destroy();
-		}
-		scroll_obj[v] = new iScroll(v);
-	});
+	// if(typeof v == "string") {
+		// if(typeof scroll_obj[v] == "object") {
+			// scroll_obj[v].destroy();
+		// }
+		// scroll_obj[v] = new iScroll(v);
+		// return;
+	// }
+	// _.each(scrollers, function (v) {
+		// if(typeof scroll_obj[v] == "object") {
+			// scroll_obj[v].destroy();
+		// }
+		// scroll_obj[v] = new iScroll(v);
+	// });
 }
 function setHistory(name, search) {
 	if(typeof(search) != "string") {
@@ -46,6 +46,10 @@ function setHistory(name, search) {
 		name.toString()
 	]));
 }
+
+function alum_headshot(fname, lname, year, isThumb) {
+	return sprintf("alumni/%s/"+(isThumb ? "_thumb/" : "")+"%s_%s_%s.jpg.jpg", year, year, lname, fname);
+}
 	
 
 	
@@ -55,13 +59,17 @@ function displayFromDatasource(ds) {
 	if(ds.length == 1) {
 		var v = ds[0];
 		var fullname = v.firstname + ' ' + (v.nickname != "NULL" && v.nickname != v.firstname ? '"' + v.nickname + '"' : "") + " " + middle_initial(v.middlename) + " " + v.lastname;
-		$('#ajax-content').html($.templates.render("details", [v.alum_id, v.alum_id, "bigbatman.jpg", fullname, v["class"].toString().substr(2)]));
+		$('#ajax-content').html($.templates.render("details", [v.alum_id, v.alum_id, alum_headshot(v.firstname, v.lastname, v["class"]), fullname, v["class"].toString().substr(2)]));
 		rebuildScrollers('inner-content');
 		return;
 	}
 	_.each(ds, function (v,k) {
 		var fullname = v.firstname + ' ' + (v.nickname != "NULL" && v.nickname != v.firstname ? '"' + v.nickname + '"' : "") + " " + middle_initial(v.middlename) + " " + v.lastname;
-		lis += $.templates.render("person", [v.alum_id, "batman.jpg", fullname,v["class"].toString().substr(2)]);
+		
+		if(v.lastname == "Argus") {
+			console.log(v);
+		}
+		lis += $.templates.render("person", [v.alum_id, alum_headshot(v.firstname, v.lastname, v["class"], true), fullname,v["class"].toString().substr(2)]);
 	});
 	$('#ajax-content').html($.templates.render("resultGroup", [lis]));
 	rebuildScrollers('inner-content');
@@ -102,7 +110,7 @@ function filter(query) {
 			displayFromDatasource(rows);
 		});
 	}
-	else if (q.year > 1966 && q.names.length == 0) {
+	else if (q.year >= 1966 && q.names.length == 0) {
 		$.db.query("SELECT * FROM alumni WHERE class = ?", [q.year], function (rows) {
 			displayFromDatasource(rows);
 			setHistory(q.year, "year:"+q.year);
