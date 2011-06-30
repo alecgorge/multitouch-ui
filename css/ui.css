@@ -1,0 +1,209 @@
+/**
+ * @author Alec Gorge
+ * @year 2011
+ * @powered-by Eponymous by R.E.M
+ */
+
+/* global styles */
+body {
+	margin:0;
+	padding:0;
+	font:16px Arial,sans-serif;
+	background:#411B18;
+}
+
+#canvas {
+	background: #57191A;
+	padding:0;
+	overflow-x:hidden;
+	overflow-y:auto;
+	box-shadow: 0 0 17px 0px #000;
+	color:white;
+}
+
+/* header */
+#header {
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	text-align:center;
+	box-shadow: 0 0 17px 0px #000;
+	background-color:rgba(0,0,0,0.7);
+}
+
+#header h1 {
+	padding-top:10px;
+	color:#FBBC0F;
+	font-weight:normal;
+	font-family:Georgia,serif;
+	margin:0;
+	font-size:45px;
+}
+#header p {
+	padding-bottom:10px;
+	text-transform:uppercase;
+	color:#ccc;
+	font-weight:bold;
+	letter-spacing:2px;
+	font-size:14px;
+	margin:0;
+	padding-top:10px;
+}
+
+/* navigaiton */
+#navigation {
+	float:left;
+	position:absolute;
+}
+
+#nav, #nav li {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+#nav li {
+	float:left;
+}
+
+#nav li a {
+	display:block;
+	float:left;
+	padding:5px;
+	font-size:19px;
+	line-height:19px;
+	padding:40px 45px;
+	outline: 0;
+	text-decoration:none;
+	background-color:rgba(0,0,0,0.2);
+	border-bottom:1px #340303 solid;
+	color:white;
+}
+
+#nav li a:hover, #nav li a:focus, #nav li a:active {
+	background-image:-moz-linear-gradient(#732121, #5E1C1D);
+	outline: 0;
+}
+
+/* grid view styles */
+.class {
+	clear:both;
+}
+
+.class:first-child {
+	border-top:100px #732121 solid;
+}
+
+.title-bar {
+	padding:15px;
+	color:#000;
+	opacity:0.7;
+	font-weight:bold;
+	margin-bottom:10px;
+	width:100%;
+}
+
+.grid, .grid li {
+	list-style:none;
+	padding:0;
+	margin:0;
+}
+
+.grid li a {
+	display:block;
+	float:left;
+	width:150px;
+	padding:15px 10px;
+	-moz-border-radius:10px;
+	text-decoration:none;
+	border:0;
+	border-radius:10px;
+}
+
+.grid li a:hover, .grid li a:focus, .grid li a:active {
+	outline:0;
+	background:rgba(0,0,0,.3);
+}
+
+.grid li {
+	float:left;
+	min-height:170px;
+}
+
+.grid li .thumb-person {
+	min-width:96px;
+	height:128px;
+	text-align:center;
+	display:block;
+	background:transparent url('../images/no-photo-funny.png') no-repeat center center;
+}
+.grid li .name {
+	display:block;
+	text-align:center;
+	color:white;
+	overflow:hidden;
+	padding-top:7px;
+	font-size:10px;
+}
+
+/* dialog styles */
+#overlay {
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,.3);
+	position:fixed;
+	top:0;
+	left:0;
+	display:none;
+}
+
+.modal {
+	position:fixed;
+	-moz-border-radius:10px;
+	top:50px !important;
+}
+
+.modal .close {
+	position:absolute;
+	top:0;
+	right:0;
+	padding:8px;
+	color:white;
+	text-decoration:none;
+}
+
+.modal p {
+	margin-bottom:0;
+}
+
+.modal img {
+	max-height:600px;
+}
+
+.modal .gutter {
+	padding:25px;
+	background:rgba(0,0,0,.3);
+	color:white;
+	font-size:16px;
+	text-align:center;
+}
+
+/* reusable, generic styles */
+.maroon-gradient {
+	background-image:-moz-linear-gradient(#732121, #5E1C1D);
+	border-bottom:1px #451414 solid;
+}
+.dark-maroon-gradient {
+	background-image:-moz-linear-gradient(#521818,#481616);
+	border-bottom:1px #340303 solid;
+}
+.gold-gradient {
+	background-image:-moz-linear-gradient(#FCD04B,#FBBC0F);	
+}
+.gray-gradient {
+	background-image:-moz-linear-gradient(#F3F3F3, #E4E4E4);	
+	border-bottom: 1px solid #C9C9C9;
+	border-top: 1px solid #FFFFFF;
+}
+

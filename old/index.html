@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" name="stylesheet" href="styles.css" />
+		<script type="text/javascript" src="js/sprintf.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/underscore-min.js"></script>
+		<script type="text/javascript" src="js/iscroll.js"></script>
+		<script type="text/javascript" src="js/ui.js"></script>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="header" class="gradient">
+				<h1>Brebeuf Jesuit</h1>
+				<p>Men and Women for Others</p>
+			</div>
+			<div id="search-bar" class="gradient">
+				<div class="gutter">
+					<input id="search" type="text" value="Search alumni..." /><input id="go" type="submit" value="Go" />
+				</div>
+			</div>
+			<div id="inner-wrapper">
+				<div id="sidebar">
+					<div class="gutter">
+						<h2>Graduation Years</h2>
+						<ul id="grad-years" class="list large-list" id="grad-years"></ul>
+					</div>
+				</div>
+				<div id="lsidebar">
+					<div class="gutter">
+						<h2>Random Alums</h2>
+						<ul class="large-list list" id="random-alums"></ul>
+					</div>
+				</div>
+				<div id="content">
+					<div id="filter-sort-bar">
+						<div id="sort-box">
+							<span class="bar-button">Sort by:</span>
+							<a href="#" class="bar-button active">First Name</a>
+							<a href="#" class="bar-button">Last Name</a>
+							<a href="#" class="bar-button">Graduation Year</a>
+						</div>
+						<div id="filter-box">
+							<a href="#" id="filter-button" class="bar-button">Filter Results</a>
+						</div>
+						<br class="clear"/>
+					</div>
+					<!--<div id="history-bar" class="gradient">
+						<div class="gutter">
+							
+						</div>
+					</div>-->
+					<div class="gutter" id="inner-content">
+						<div class="scrollWrapper" id="ajax-content">
+							<div class="gutter">
+								<h2>Welcome</h2>
+								<p>Some really sweet text might be here someday...</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
