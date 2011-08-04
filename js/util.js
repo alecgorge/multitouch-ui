@@ -3,6 +3,11 @@ $.fn.fullHeight = function () {
 		$(this).css('height', (typeof window.innerHeight != 'undefined' ? window.innerHeight : document.body.offsetHeight)-($(this).outerHeight(true)-$(this).height())+'px');
 	});
 };
+$.fn.fullWidth = function () {
+	return this.each(function () {
+		$(this).css('width', (typeof window.innerWidth != 'undefined' ? window.innerWidth : document.body.offsetWidth)-($(this).outerWidth(true)-$(this).width())+'px');
+	});
+};
 $.fn.stretch = function () {
 	return this.each(function () {
 		$(this).css('height', (typeof window.innerHeight != 'undefined' ? window.innerHeight : document.body.offsetHeight)-$(this).offset().top+'px');
