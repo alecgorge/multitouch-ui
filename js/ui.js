@@ -234,6 +234,5 @@ $(function () {
 					});					
 				});
 			});
-			showSearcher.apply($('.toggle-search')[0]);		
 		});
 });
