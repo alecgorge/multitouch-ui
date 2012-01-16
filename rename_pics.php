@@ -48,6 +48,7 @@ foreach(glob($dir) as $file) {
 	}
 }
 
+$numRecovered = 0;
 foreach($filesToRevisit as $k => $file) {
 	$filename = basename($file);
 
@@ -84,9 +85,11 @@ foreach($filesToRevisit as $k => $file) {
 		printf("It would seem that %s is already taken. Does this person even exist: %s\n", $newFilename, $filename);
 	}
 	else {
+		$numRecovered++;
 		$renames[$file] = $newPath;
 	}
 }
+printf("%d pictures are going to be fixed.\n", $numRecovered);
 
 foreach($renames as $from => $to) {
 	printf("Renaming: %s\n      to: %s\n", basename($from), basename($to));
